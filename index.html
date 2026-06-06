@@ -253,11 +253,15 @@
 				}
 			}
             window.addEventListener('DOMContentLoaded', () => {
-                favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-                favorites.forEach(i=>{
-                    var inp = document.getElementById(`star${i}`);
-                    favOn(inp);
-                });
+                favorites = JSON.parse(localStorage.getItem("favorites") | '[]');
+                if(favorites.length > 0){
+                    var uniqfav = [...new Set(favorites)]; 
+                    localStorage.setItem('favorites', JSON.stringify(uniqfav));
+                    uniqfav.forEach(i=>{
+                        var inp = document.getElementById(`star${i}`);
+                        favOn(inp);
+                    });
+                }
                 favjson = JSON.parse(localStorage.getItem('favjson') || '[]');
             });
             function byRentOnclick() {
