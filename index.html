@@ -717,18 +717,18 @@
             }
             document.addEventListener("DOMContentLoaded", () => {
                 //renderTable(current);
-                favorites = JSON.parse(localStorage.getItem("favorites"));
-                if(favorites.length > 0){
-                    var fav_ = [];
-                    favorites.forEach(i => { fav_.push(parseInt(i)); })
-                    var uniqfav = [...new Set(fav_)];
-                    localStorage.setItem('favorites', JSON.stringify(uniqfav));
-                    uniqfav.forEach(i=>{
-                        var inp = document.getElementById(`star${i}`);
-                        favOn(inp);
-                    });
-                }
-                favjson = JSON.parse(localStorage.getItem('favjson'));
+                // favorites = JSON.parse(localStorage.getItem("favorites"));
+                // if(favorites.length > 0){
+                //     var fav_ = [];
+                //     favorites.forEach(i => { fav_.push(parseInt(i)); })
+                //     var uniqfav = [...new Set(fav_)];
+                //     localStorage.setItem('favorites', JSON.stringify(uniqfav));
+                //     uniqfav.forEach(i=>{
+                //         var inp = document.getElementById(`star${i}`);
+                //         favOn(inp);
+                //     });
+                // }
+                // favjson = JSON.parse(localStorage.getItem('favjson'));
                 document.getElementById("rentprice").addEventListener("keydown", (evt) => {
                     if (evt.keyCode == 13) {
                         var max_rent = parseInt(document.getElementById("rentprice").value);
@@ -791,6 +791,18 @@
                 document.getElementById("maindiv").innerHTML = "";
                 document.getElementById("maindiv").appendChild(maintable);
                 document.getElementById("counter").innerText = all_listings.length;
+                favorites = JSON.parse(localStorage.getItem("favorites"));
+                if(favorites.length > 0){
+                    var fav_ = [];
+                    favorites.forEach(i => { fav_.push(parseInt(i)); })
+                    var uniqfav = [...new Set(fav_)];
+                    localStorage.setItem('favorites', JSON.stringify(uniqfav));
+                    uniqfav.forEach(i=>{
+                        var inp = document.getElementById(`star${i}`);
+                        favOn(inp);
+                    });
+                }
+                favjson = JSON.parse(localStorage.getItem('favjson'));
             }
             function makeDataRow(all, index) {
                 var item = all[index];
