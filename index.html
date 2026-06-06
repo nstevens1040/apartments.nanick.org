@@ -240,7 +240,7 @@
 					navigator.clipboard.writeText(favjson).then((resolve) => {
                         var btn = document.getElementById("clip_btn");
                         btn.disabled = true;
-                        btn.innerHTML = "Copied!"
+                        btn.innerHTML = "Copied!";
                         setTimeout(()=>{
                             btn.disabled = false;
                             btn.innerHTML = "Copy Favorites as JSON";
@@ -256,7 +256,7 @@
                 favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
                 favorites.forEach(i=>{
                     var inp = document.getElementById(`star${i}`);
-                    starClick(inp);
+                    favOn(inp);
                 });
                 favjson = JSON.parse(localStorage.getItem('favjson') || '[]');
             });
@@ -1160,6 +1160,22 @@
                 var new_list = [];
                 o.filter(a=>{ return (a.id != x.parentElement.dataset.rowid)}).forEach(i => { new_list.push(i); });
                 localStorage.setItem("favjson",JSON.stringify(new_list));
+            }
+            function favOn(x){
+                x.checked = true;
+                if(x.getAttribute("onclick")){ x.removeAttribute("onclick"); }
+                x.setAttribute("onclick",'removeFav(this);');
+                if(x.labels[0].classList.contains("notfav")){
+                    x.labels[0].classList.remove("notfav");
+                    x.labels[0].classList.add("fav");
+                }
+                x.labels[0].style.color = "chartreuse";
+                x.labels[0].innerHTML = '&starf;';
+                x.labels[0].title = "Remove Favorite";
+                if(x.getAttribute("onmouseover")){ x.removeAttribute("onmouseover"); }
+                x.labels[0].setAttribute("onmouseover","reverseHover(this);");
+                if(x.getAttribute("onmouseout")){ x.removeAttribute("onmouseout"); }
+                x.labels[0].setAttribute("onmouseout","reverseMouseOut(this);");
             }
         </script>
     </head>
