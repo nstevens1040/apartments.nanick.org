@@ -721,7 +721,9 @@
                     filteronfav = false;
                 } else {
                     [...document.body.getElementsByClassName("notfav")].forEach(i => {
-                        i.parentElement.parentElement.style.display = "none";
+                        if(i.tagName == 'DIV'){
+                            i.parentElement.parentElement.style.display = "none";
+                        }
                     });
                     filteronfav = true;
                 }
@@ -1216,7 +1218,11 @@
                 if(x.labels[0].classList.contains("fav")){
                     x.labels[0].classList.remove("fav");
                 }
+                if(x.parentElement.classList.contains("fav")){
+                    x.parentElement.classList.remove("fav");
+                }
                 x.labels[0].classList.add("notfav");
+                x.parentElement.classList.add("notfav");
                 x.labels[0].innerHTML = '&star;';
                 x.labels[0].title = "Add Favorite";
                 if(x.getAttribute("onmouseover")){ x.removeAttribute("onmouseover"); }
@@ -1231,7 +1237,11 @@
                 if(x.labels[0].classList.contains("notfav")){
                     x.labels[0].classList.remove("notfav");
                 }
+                if(x.parentElement.classList.contains("notfav")){
+                    x.parentElement.classList.remove("notfav");
+                }
                 x.labels[0].classList.add("fav");
+                x.parentElement.classList.add("fav");
                 x.labels[0].innerHTML = '&starf;';
                 x.labels[0].title = "Remove Favorite";
                 if(x.getAttribute("onmouseover")){ x.removeAttribute("onmouseover"); }
