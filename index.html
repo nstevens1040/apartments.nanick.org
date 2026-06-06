@@ -715,6 +715,18 @@
                     return 0;
                 }
             }
+            function showOnlyFavorites(){
+                if(filteronfav){
+                    renderTable(current);
+                    filteronfav = false;
+                } else {
+                    [...document.body.getElementsByClassName("notfav")].forEach(i => {
+                        i.parentElement.parentElement.style.display = "none";
+                    });
+                    filteronfav = true;
+                }
+            }
+            var filteronfav = false;
             document.addEventListener("DOMContentLoaded", () => {
                 //renderTable(current);
                 // favorites = JSON.parse(localStorage.getItem("favorites"));
@@ -1246,6 +1258,7 @@
                                 <button id="link_btn" onclick="byLinkOnclick();" style="background-color: chartreuse; color: black;">Link</button>
                                 <button id="mgmt_btn" onclick="byManagementOnClick();" style="background-color: chartreuse; color: black;">Management</button>
                                 <button id="phon_btn" onclick="byPhoneOnClick();" style="background-color: chartreuse; color: black;">Phone</button>
+                                <button id="favs_btn" onclick="showOnlyFavorites();" style="background-color: chartreuse; color: black;">Favorites Only</button>
                                 <!-- <button id="orig_btn" onclick="byOriginOnClick();">Origin</button> -->
                             </td>
                         </tr>
