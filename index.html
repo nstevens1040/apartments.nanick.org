@@ -718,9 +718,12 @@
                 }
             }
             function showOnlyFavorites(){
+                var active = document.getElementById("favs_btn");
                 if(filteronfav){
                     renderTable(current);
                     filteronfav = false;
+                    active.style.backgroundColor = "chartreuse";
+                    active.style.color = "black";
                 } else {
                     [...document.body.getElementsByClassName("notfav")].forEach(i => {
                         if(i.tagName == 'DIV'){
@@ -728,6 +731,8 @@
                         }
                     });
                     filteronfav = true;
+                    active.style.backgroundColor = "purple";
+                    active.style.color = "white";
                 }
             }
             var filteronfav = false;
