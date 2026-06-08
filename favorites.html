@@ -1014,7 +1014,7 @@
                 var staticmap = createStaticMap(item);
                 mapImagDiv.appendChild(staticmap);
 
-                var rentalImages = createImageCell(item["ImageUris"], index);
+                var rentalImages = createImageCell(item["ImageUris"], item.Id);
                 mapImagDiv.appendChild(rentalImages);
                 mapAndImages.appendChild(mapImagDiv);
 
