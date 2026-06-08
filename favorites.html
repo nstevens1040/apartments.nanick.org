@@ -1083,23 +1083,21 @@
             function createImageCell(imgUris, rowid) {
                 var firstImage = imgUris.filter(image => {
                     return (!image.match(/matterport/) & !image.match(/videosbyloopnet/));
-                }
-                )[0];
+                })[0];
                 var rimg = document.createElement("img");
                 rimg.style.cursor = "pointer";
                 rimg.setAttribute("data-rowid", rowid);
-                rimg.addEventListener("click", lbDivClick);
+                rimg.setAttribute("onclick","lbDivClick(this);");
                 rimg.classList.add("rimg");
                 rimg.src = firstImage;
                 return rimg;
             }
-            function lbDivClick(evt) {
-                var rowid = this.dataset.rowid;
+            function lbDivClick(x) {
+                var rowid = x.dataset.rowid;
                 console.log(rowid);
                 var imgUris = JSON.parse(document.getElementById(rowid).dataset.json).ImageUris.filter(image => {
                     return (!image.match(/matterport/) & !image.match(/videosbyloopnet/));
-                }
-                );
+                });
                 var firstImage = imgUris[0];
                 var lbdiv = document.createElement("div");
                 lbdiv.id = "lightbox";
@@ -1114,8 +1112,7 @@
                     document.body.removeChild(lbele);
                     window.removeEventListener("keydown", windowKeyDown);
                     imgIter = 0;
-                }
-                );
+                });
                 lbdiv.appendChild(lbimg);
                 document.body.appendChild(lbdiv);
                 window.addEventListener("keydown", windowKeyDown);
